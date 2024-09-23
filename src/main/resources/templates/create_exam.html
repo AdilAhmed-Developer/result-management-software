@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark navbar-dark">
+  <div class="container-fluid  ">
+    <a class="navbar-brand" href="#">Result Management System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " th:href="@{/students}">Students</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/teachers}">Teachers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/subjects}">Subjects</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link  active" aria-current="page" th:href="@{/exams}">Exams</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/marks}">Marks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/settings}">Settings</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+      <a th:href="@{/students}" class = "btn btn-primary">Report</a>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<br>
+<br>
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Create New Student </h1>
+				<div class = "card-body">
+					<form th:action="@{/exams}" th:object = "${exam}" method="POST">
+						<div class ="form-group">
+							<label> Exam Name</label>
+							<input
+							type = "text"
+							name = "examName"
+							th:field = "*{examName}"
+							class = "form-control"
+							placeholder="Enter Exam Name" 
+							/>
+						</div>
+											
+						
+						
+						<div class ="form-group">
+							<label> Exam Date </label>
+							<input
+							type = "text"
+							name = "examDate"
+							th:field = "*{examDate}"
+							class = "form-control"
+							placeholder="Select Exam Date" 
+							/>
+						</div>
+						
+						
+						<div class ="form-group">
+							<label> Minimun Marks </label>
+							<input
+							type = "text"
+							name = "minMarks"
+							th:field = "*{minMarks}"
+							class = "form-control"
+							placeholder="Enter Minimum Marks" 
+							/>
+						</div>
+						
+						<div class ="form-group">
+							<label> Maximum Marks </label>
+							<input
+							type = "text"
+							name = "maxMarks"
+							th:field = "*{maxMarks}"
+							class = "form-control"
+							placeholder="Enter Maximum Marks" 
+							/>
+						</div>
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

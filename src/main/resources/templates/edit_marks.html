@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark navbar-dark">
+  <div class="container-fluid  ">
+    <a class="navbar-brand" href="#">Result Management System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " th:href="@{/students}">Students</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/teachers}">Teachers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/subjects}">Subjects</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" th:href="@{/exams}">Exams</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/marks}">Marks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/settings}">Settings</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+      <a th:href="@{/students}" class = "btn btn-primary">Report</a>
+      </span>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Update Student Marks </h1>
+				<div class = "card-body">
+					<form th:action="@{/marks/{id} (id=${mark.id})}" th:object = "${mark}" method="POST">
+						
+						<div class ="form-group">
+							<label> Student Name</label>
+							<div>
+						 <select th:field = "*{studentName}" class="w-100 p-2 rounded"  >
+      					  <option th:each="student : ${students}" th:value = "${student.fullName}" 	
+                            th:text="${student.fullName}" ></option>            
+   						 </select>
+   						 </div>
+						</div>
+   						 
+   						 <div class="d-flex justify-content-between">
+								
+								 <div class ="form-group ">
+							<label> Branch </label>
+							<input
+							type = "text"
+							name = "branch"
+							th:field = "*{branch}"
+							class = "form-control"
+							placeholder="Enter Branch" 
+							/>
+						</div>
+						
+						<div class ="form-group ">
+							<label> Semester </label>
+							<input
+							type = "text"
+							name = "semester"
+							th:field = "*{semester}"
+							class = "form-control"
+							placeholder="Enter Semester" 
+							/>
+						</div>
+							</div>
+							
+							<div class ="form-group">
+							<label> Exam Name</label>
+							<div>
+						 <select th:field = "*{examName}" class="w-100 p-2 rounded"  >
+      					  <option th:each="exam : ${exams}" th:value = "${exam.examName}" 	
+                            th:text="${exam.examName}" ></option>            
+   						 </select>
+   						 </div>
+						</div>
+							
+							 
+   						 <div class="d-flex justify-content-between">
+								
+							<div class ="form-group">
+							<label> Subject Name</label>
+							<div>
+						 <select th:field = "*{subject1}" class=" p-2 rounded"  >
+      					  <option th:each="subject : ${subjects}" th:value = "${subject.subjectName}" 	
+                            th:text="${subject.subjectName}" ></option>            
+   						 </select>
+   						 </div>
+   						 </div>
+						
+						<div class ="form-group w-25">
+							<label> Min Marks </label>
+							<input
+							type = "text"
+							name = "subject1MinMarks"
+							th:field = "*{subject1MinMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						
+						<div class ="form-group w-25">
+							<label> Max Marks </label>
+							<input
+							type = "text"
+							name = "subject1MaxMarks"
+							th:field = "*{subject1MaxMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						<div class ="form-group w-25">
+							<label> Obtained Marks </label>
+							<input
+							type = "text"
+							name = "subject1ObtainedMarks"
+							th:field = "*{subject1ObtainedMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+							</div>
+							
+							
+							 <div class="d-flex justify-content-between">
+								
+							<div class ="form-group">
+							<label> Subject Name</label>
+							<div>
+						 <select th:field = "*{subject2}" class=" p-2 rounded"  >
+      					  <option th:each="subject : ${subjects}" th:value = "${subject.subjectName}" 	
+                            th:text="${subject.subjectName}" ></option>            
+   						 </select>
+   						 </div>
+   						 </div>
+						
+						<div class ="form-group w-25">
+							<label> Min Marks </label>
+							<input
+							type = "text"
+							name = "subject2MinMarks"
+							th:field = "*{subject2MinMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						
+						<div class ="form-group w-25">
+							<label> Max Marks </label>
+							<input
+							type = "text"
+							name = "subject2MaxMarks"
+							th:field = "*{subject2MaxMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						<div class ="form-group w-25">
+							<label> Obtained Marks </label>
+							<input
+							type = "text"
+							name = "subject2ObtainedMarks"
+							th:field = "*{subject2ObtainedMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+							</div>
+							
+							 <div class="d-flex justify-content-between">
+								
+							<div class ="form-group">
+							<label> Subject Name</label>
+							<div>
+						 <select th:field = "*{subject3}" class=" p-2 rounded"  >
+      					  <option th:each="subject : ${subjects}" th:value = "${subject.subjectName}" 	
+                            th:text="${subject.subjectName}" ></option>            
+   						 </select>
+   						 </div>
+   						 </div>
+						
+						<div class ="form-group w-25">
+							<label> Min Marks </label>
+							<input
+							type = "text"
+							name = "subject3MinMarks"
+							th:field = "*{subject3MinMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						
+						<div class ="form-group w-25">
+							<label> Max Marks </label>
+							<input
+							type = "text"
+							name = "subject3MaxMarks"
+							th:field = "*{subject3MaxMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						<div class ="form-group w-25">
+							<label> Obtained Marks </label>
+							<input
+							type = "text"
+							name = "subject13ObtainedMarks"
+							th:field = "*{subject3ObtainedMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+							</div>
+							
+							 <div class="d-flex justify-content-between">
+								
+							<div class ="form-group">
+							<label> Subject Name</label>
+							<div>
+						 <select th:field = "*{subject4}" class=" p-2 rounded"  >
+      					  <option th:each="subject : ${subjects}" th:value = "${subject.subjectName}" 	
+                            th:text="${subject.subjectName}" ></option>            
+   						 </select>
+   						 </div>
+   						 </div>
+						
+						<div class ="form-group w-25">
+							<label> Min Marks </label>
+							<input
+							type = "text"
+							name = "subject4MinMarks"
+							th:field = "*{subject4MinMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						
+						<div class ="form-group w-25">
+							<label> Max Marks </label>
+							<input
+							type = "text"
+							name = "subject4MaxMarks"
+							th:field = "*{subject4MaxMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						<div class ="form-group w-25">
+							<label> Obtained Marks </label>
+							<input
+							type = "text"
+							name = "subject4ObtainedMarks"
+							th:field = "*{subject4ObtainedMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+							</div>
+							
+							 <div class="d-flex justify-content-between">
+								
+							<div class ="form-group">
+							<label> Subject Name</label>
+							<div>
+						 <select th:field = "*{subject5}" class=" p-2 rounded"  >
+      					  <option th:each="subject : ${subjects}" th:value = "${subject.subjectName}" 	
+                            th:text="${subject.subjectName}" ></option>            
+   						 </select>
+   						 </div>
+   						 </div>
+						
+						<div class ="form-group w-25">
+							<label> Min Marks </label>
+							<input
+							type = "text"
+							name = "subject5MinMarks"
+							th:field = "*{subject5MinMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						
+						<div class ="form-group w-25">
+							<label> Max Marks </label>
+							<input
+							type = "text"
+							name = "subject5MaxMarks"
+							th:field = "*{subject5MaxMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+						<div class ="form-group w-25">
+							<label> Obtained Marks </label>
+							<input
+							type = "text"
+							name = "subject5ObtainedMarks"
+							th:field = "*{subject5ObtainedMarks}"
+							class = "form-control"
+							placeholder="0" 
+							/>
+						</div>
+							</div>
+   						 
+   					
+						
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

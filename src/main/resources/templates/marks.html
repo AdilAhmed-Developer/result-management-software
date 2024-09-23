@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	<style>
+		
+		.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+  float: right;
+  margin-right: -8%;
+}
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+   width: 30%;
+}
+.image2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+}
+	</style>
+	
+</head>
+<body>
+
+<div style="display: flex; justify-content: center;align-items: center; " >
+	 <div class="parent">
+ <img th:src="@{https://www.anjumanpolytechnic.in/logo/outer.png?v=PzuwujOAC66Rdn9gUiRZ1IDZ-XrXKHsvHu4t_zFLJBs}"  class="image1"/>
+ <img th:src="@{https://www.anjumanpolytechnic.in/logo/inner.png?v=y_pehuXkdpxxJKGkvj9EhBhpNlOt2Agh-Zd0zLNMsPU}"  class="image2"/>
+ 
+</div>
+ <h4 >ANJUMAN POLYTECHNIC COLLEGE, NAGPUR</h4>
+</div>
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark navbar-dark">
+  <div class="container-fluid">
+	  
+	      <a class="navbar-brand" href="#">Result Management System</a>
+	 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " th:href="@{/students}">Students</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/teachers}">Teachers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/subjects}">Subjects</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" th:href="@{/exams}">Exams</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/marks}">Marks</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link" th:href="@{/settings}">Settings</a>
+        </li>
+      </ul>
+      <span class="navbar-text ">
+      <a th:href="@{/export-to-excel}" class = "btn btn-primary">Download Report</a>
+      </span>
+    </div>
+  </div>
+</nav>
+
+	<div class ="container">
+		<div class = "row justify-content-around align-items-center mt-4 mb-2">
+			<h1 > Students Mark List</h1>
+			<div class = "col-lg-3 mt-2">
+				<a th:href = "@{/marks/new}" class = "btn btn-primary btn-sm mb-3"> Add Marks</a>
+			</div>
+		</div>
+		
+		
+		<table class = "table table-striped table-bordered">
+			<thead class = "table-dark">
+				<tr>
+					<th>Student Name</th>
+					<th>Branch </th>
+					<th>Semester </th>
+					<th>Exam Name </th>
+					<th>Percentage </th>
+					<th>Result </th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "mark: ${marks}">
+					<td th:text = "${mark.studentName}"></td>
+					<td th:text = "${mark.branch}"></td>
+					<td th:text = "${mark.semester}"></td>
+					<td th:text = "${mark.examName}"></td>
+					<td  th:text = "${mark.percentage()}" ></td>
+					<!-- IF STUDENT HAS PASSED-->
+					<div th:if="${mark.status()}">
+					  <td   th:text = "Passed"></td>
+					</div>
+					<!-- ELSE -->
+					<div th:unless="${mark.status()}">
+					    <td th:text = "Failed"  ></td>
+					</div>
+					<td>
+						<a th:href = "@{/marks/edit/{id}(id=${mark.id})}"
+						 class = "btn btn-primary">Update</a>
+						
+						<a th:href = "@{/marks/{id}(id=${mark.id})}"
+						 class = "btn btn-danger">Delete</a>
+						 
+						 
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+		
+	</div>
+</body>
+</html>
